@@ -38,11 +38,11 @@ Presentation and Materials from Simeon Batemans presentation at cf.Objective() 2
 	var server = net.createServer(function( socket ) {
 		clients.push(socket);
 		socket.idno = clients.length;
-		socket.write("Echo server\r\n");
+		socket.write("Welcome Client " + socket.idno + "\r\n");
 	
 		socket.addListener("data",function(data){
 			for ( var i=0;i<clients.length;i++){
-				clients[i].write('client ' + parseInt(socket.idno) + ": " +data);
+			    clients[i].write('client ' + parseInt(socket.idno) + ": " +data);
 			}
 		});
 	});
