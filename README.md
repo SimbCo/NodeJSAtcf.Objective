@@ -25,22 +25,21 @@ Presentation and Materials from Simeon Batemans presentation at cf.Objective() 2
 	var server = net.createServer(function( socket ) {
 	  socket.write("Echo server\r\n");
 	  socket.pipe(socket);
-	
 	});
 	
 	server.listen(8080);
 
 ##NPM Connect Static Server
 
-  var connect = require('connect');
-  
-  var server = connect()
-    .use(connect.logger('dev'))
-    .use(connect.static('public'))
-    .use(function(req, res){
-      res.end('hello world\n');
-    })
-    .listen(3000);
+	var connect = require('connect');
+	
+	var server = connect()
+		.use(connect.logger('dev'))
+		.use(connect.static('public'))
+		.use(function(req, res){
+			res.end('hello world\n');
+		})
+		.listen(3000);
 
 ##Express Application
 
