@@ -124,41 +124,45 @@ Presentation and Materials from Simeon Batemans presentation at cf.Objective() 2
 	});
 
 ###index.html
+
 	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 	<html>
-		<head><title>Simple Chat</title></head>
-		<body>
-			<div>
-				<p><label for="messageText">Message</label> <input type="text" id="messageText"></p>
-				<p><button id="sendButton">Send</button></p>
-			</div>
-			<div><ul id="messages"></ul></div>
-			<script type="text/javascript" src="/socket.io/socket.io.js"></script>
-			<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.2.js"></script>
-			<script type="text/javascript">
-				$(document).ready(function() {
-					var webSocket = io.connect('http://' + document.location.hostname + ':' + document.location.port);
-								
-					webSocket.on('connect', function() {
-						$('#messages').append('<li>Connected to the server.<\/li>');
-					});
-
-					webSocket.on('message', function(message) {
-						$('#messages').append('<li>' + message + '<\/li>');
-					});
-
-					webSocket.on('disconnect', function() {
-						$('#messages').append('<li>Disconnected from the server.<\/li>');
-					});
-
-					$('#sendButton').bind('click', function() {
-						var message = $('#messageText').val();
-						webSocket.send(message);
-						$('#messageText').val('');
-					});
-				});
-			</script>
-		</body>
+	    <head><title>Simple Chat</title></head>
+	    <body>
+	        <div>
+	            <label for="messageText">Message</label>
+	            <input type="text" id="messageText">
+	        </div>
+	        <div><ul id="messages"></ul></div>
+	        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	        <script type="text/javascript" src="http://code.jquery.com/jquery-1.5.2.js"></script>
+	        <script type="text/javascript">
+	            $(document).ready(function() {
+	                var webSocket = io.connect('http://' + document.location.hostname + ':' + document.location.port);
+	
+	                webSocket.on('connect', function() {
+	                    $('#messages').append('<li>Connected to the server.<\/li>');
+	                });
+	
+	                webSocket.on('message', function(message) {
+	                    $('#messages').append('<li>' + message + '<\/li>');
+	                });
+	
+	                webSocket.on('disconnect', function() {
+	                    $('#messages').append('<li>Disconnected from the server.<\/li>');
+	                });
+	
+	                $('#messageText').keypress( function(e) {
+	                    if (e.keyCode && e.keyCode == 13) {
+	                        var message = $('#messageText').val();
+	                        webSocket.send(message);
+	                        $('#messageText').val('');
+	                    }
+	                });
+	            });
+	        </script>
+	    </body>
 	</html>
+
 
 
