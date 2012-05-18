@@ -66,7 +66,8 @@ Presentation and Materials from Simeon Batemans presentation at cf.Objective() 2
 
 	npm install express -g
 	
-	express new .
+	express new expgenapp
+	cd expgenapp && npm install
 	
 
 ##Socket.io
