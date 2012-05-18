@@ -28,6 +28,26 @@ Presentation and Materials from Simeon Batemans presentation at cf.Objective() 2
 	});
 	
 	server.listen(8080);
+	
+##Node Socket Chat Server
+
+	var net = require('net');
+	
+	var clients = [];
+	
+	var server = net.createServer(function( socket ) {
+		clients.push(socket);
+		socket.idno = clients.length;
+		socket.write("Echo server\r\n");
+	
+		socket.addListener("data",function(data){
+			for ( var i=0;i<clients.length;i++){
+				clients[i].write('client ' + parseInt(socket.idno) + ": " +data);
+			}
+		});
+	});
+	
+	server.listen(8080);
 
 ##NPM Connect Static Server
 
