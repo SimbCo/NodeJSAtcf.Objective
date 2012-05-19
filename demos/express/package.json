@@ -1,0 +1,11 @@
+{
+  "author": "",
+  "name": "express",
+  "version": "0.0.0",
+  "dependencies": {"express":"*"},
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
